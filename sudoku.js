@@ -3,14 +3,13 @@ const { EOL } = require('os');
 /**
  * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
  */
-// fs.readFileSync(`${__dirname}/puzzles.txt`, 'utf-8');
 function read() {
   const puz = fs
     .readFileSync(`${__dirname}/puzzles.txt`, 'utf-8')
     .trim()
     .split(EOL)
     .map((el) => el.split(''));
-  // console.log(puz);
+ 
   let puzRes = puz.map((el) => {
     let res = [];
     for (let i = 0; i < el.length; i += 9) {
@@ -19,15 +18,25 @@ function read() {
     return res;
   });
   console.table(puzRes[0]);
-}
 
+}
 read();
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции read.
- * Возвращает игровое поле после попытки его решить.
- */
-function solve() {}
-solve();
+function solve() {
+  const p = read();
+  function isEmpty(el) {
+    if (el === "-") {
+      return true;
+    }
+    return false;
+  }
+  console.log(isEmpty(p));
+  /**
+   * Принимает игровое поле в том формате, в котором его вернули из функции read.
+   * Возвращает игровое поле после попытки его решить.
+   */
+}
+solve()
+
 
 function isSolved() {
   /**
