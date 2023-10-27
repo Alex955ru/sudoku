@@ -1,26 +1,15 @@
-// const { log } = require("console");
-// const fs = require("fs");
-// const { EOL } = require("os");
-
-// function read() {
-//   const txt = fs.readFileSync(`${__dirname}/puzzles.txt`, "utf-8").map((el) => el.split(EOL));
-//   // .match(/.{9}/g);
-//   // const txt1 = txt.map((el) => el.split(EOL)).join('')
-//   // const res = txt.forEach((el, ind));
-//   console.log(txt);
-// }
-// read();
-
-const fs = require("fs");
-const { EOL } = require("os");
-
+const fs = require('fs');
+const { EOL } = require('os');
+/**
+ * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
+ */
 function read() {
   const puz = fs
-    .readFileSync(`${__dirname}/puzzles.txt`, "utf-8")
+    .readFileSync(`${__dirname}/puzzles.txt`, 'utf-8')
     .trim()
     .split(EOL)
-    .map((el) => el.split(""));
-
+    .map((el) => el.split(''));
+ 
   let puzRes = puz.map((el) => {
     let res = [];
     for (let i = 0; i < el.length; i += 9) {
@@ -29,6 +18,7 @@ function read() {
     return res;
   });
   console.table(puzRes[0]);
+
 }
 read();
 function solve() {
@@ -46,6 +36,8 @@ function solve() {
    */
 }
 solve()
+
+
 function isSolved() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
