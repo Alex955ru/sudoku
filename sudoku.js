@@ -1,28 +1,33 @@
-const { log } = require("console");
-const fs = require("fs");
-const { EOL } = require("os");
-
+const fs = require('fs');
+const { EOL } = require('os');
+/**
+ * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
+ */
+// fs.readFileSync(`${__dirname}/puzzles.txt`, 'utf-8');
 function read() {
-  const txt = fs.readFileSync(`${__dirname}/puzzles.txt`, "utf-8").match(/.{9}/g)
-  // const txt1 = txt.map((el) => el.split(EOL)).join('')
-       
-   const newarr = txt.map((el) => el.split(''))
-   
-
-
-  }
-
-console.log(read());
-
-
-
-
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+  const puz = fs
+    .readFileSync(`${__dirname}/puzzles.txt`, 'utf-8')
+    .trim()
+    .split(EOL)
+    .map((el) => el.split(''));
+  // console.log(puz);
+  let puzRes = puz.map((el) => {
+    let res = [];
+    for (let i = 0; i < el.length; i += 9) {
+      res.push(el.slice(i, i + 9));
+    }
+    return res;
+  });
+  console.table(puzRes[0]);
 }
+
+read();
+/**
+ * Принимает игровое поле в том формате, в котором его вернули из функции read.
+ * Возвращает игровое поле после попытки его решить.
+ */
+function solve() {}
+solve();
 
 function isSolved() {
   /**
@@ -39,14 +44,8 @@ function prettyBoard() {
    */
 }
 
-
-
-
-
 //   const txt = fs.readFileSync(`${__dirname}/puzzles.txt`, "utf-8").split('')
 
 // const newarr = txt.match(/\.{9}/g);
 
 // console.log(newarr);
-
-
